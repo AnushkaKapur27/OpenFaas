@@ -18,8 +18,8 @@ jobs:
 
     - name: Setup kubeconfig
       run: |
-        echo "${{ secrets.KUBECONFIG }}" | base64 -d > kubeconfig
-        export KUBECONFIG=$PWD/kubeconfig
+        mkdir -p $HOME/.kube
+        echo "${{ secrets.KUBECONFIG }}" | base64 -d > $HOME/.kube/config
 
     - name: Terraform Init
       run: terraform init
